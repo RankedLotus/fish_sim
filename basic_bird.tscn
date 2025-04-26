@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://d3ymaghq6gyyb"]
+
+[ext_resource type="Texture2D" uid="uid://ck70fofxmofu7" path="res://koifishy.png" id="1_hk11d"]
+[ext_resource type="Script" path="res://basic_bird.gd" id="1_rqbdg"]
+[ext_resource type="Script" path="res://movement.gd" id="2_povt0"]
+
+[node name="basicFish" type="Node2D"]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(477, 220)
+scale = Vector2(3, 3)
+script = ExtResource("1_rqbdg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_hk11d")
+
+[node name="movement" type="Node2D" parent="."]
+script = ExtResource("2_povt0")
