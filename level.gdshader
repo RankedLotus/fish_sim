@@ -5,7 +5,7 @@ uniform sampler2D noise : repeat_enable;
 uniform vec2 scroll = vec2(0.002, 0.002);
 uniform sampler2D noise2 : repeat_enable;
 uniform vec2 scroll2 = vec2(0.003, 0.003);
-uniform float distortion_strength : hint_range(-1, 1) = 0.0006;
+uniform float distortion_strength : hint_range(-1, 1) = 0.01;
 uniform vec4 tone_color : source_color;
 uniform vec4 top_color : source_color;
 uniform float light_start : hint_range(0.0, 1.0) = 0.275;

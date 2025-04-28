@@ -39,7 +39,7 @@ texture = ExtResource("2_oq323")
 
 [node name="basicFish" parent="." instance=ExtResource("4_1s46w")]
 texture_filter = 3
-position = Vector2(164, 89)
+position = Vector2(0, 0)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 texture_filter = 1

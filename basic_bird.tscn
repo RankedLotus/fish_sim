@@ -26,10 +26,11 @@ scale_over_velocity_curve = SubResource("CurveTexture_fj0y3")
 color = Color(0.898039, 1, 1, 0.72549)
 
 [node name="basicFish" type="Node2D"]
+top_level = true
 light_mask = 2
 visibility_layer = 2
 position = Vector2(477, 220)
-scale = Vector2(3, 3)
+scale = Vector2(3.3, 3.3)
 script = ExtResource("1_rqbdg")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -49,6 +50,8 @@ one_shot = true
 explosiveness = 0.6
 randomness = 0.45
 trail_enabled = true
+trail_sections = 4
+trail_section_subdivisions = 2
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_w8475")

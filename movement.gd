@@ -9,7 +9,7 @@ var curr_rotation = 0
 @export var twitch_frequency = Vector2(1, 10) #defines how often behavior generally changes
 @export var twitch_strength = Vector2(2, 20) #defines the strength of the change in speed (on natural log curve)
 @export var my_timer = 2 #timer on which behavior changes
-
+@export var quadrant_size = Vector2(650, 350)
 func get_curr_velocity():
 	return dir_vector * speed
 
@@ -17,6 +17,8 @@ func get_position_difference():
 	return get_curr_velocity()
 
 func _physics_process(delta):
+	
+
 	#moving to (to smoothen)
 	speed = move_toward(speed, target_speed, randi_range(twitch_frequency.x, twitch_frequency.y))
 	var amt_to_rotate = target_rotation - move_toward(target_rotation, 0, 0.005)
@@ -32,3 +34,17 @@ func _physics_process(delta):
 		target_rotation = rsign * PI / 4
 		#dir_vector = dir_vector.rotated(rsign * PI / 4)
 		my_timer = randi_range(twitch_frequency.x, twitch_frequency.y)
+	
+	quadrant_size = get_viewport().get_visible_rect().size / 2
+	#world border:
+	if(global_position.x > quadrant_size.x):
+		dir_vector.x = move_toward(dir_vector.x, -2, delta)
+	
+	if(global_position.x < -quadrant_size.x):
+		dir_vector.x = move_toward(dir_vector.x, 2, delta)
+	
+	if global_position.y > quadrant_size.y:
+		dir_vector.y = move_toward(dir_vector.y, -2, delta)
+	
+	if global_position.y < -quadrant_size.y:
+		dir_vector.y = move_toward(dir_vector.y, 2, delta)
