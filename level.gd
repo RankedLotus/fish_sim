@@ -11,3 +11,7 @@ func _make_fish(pos):
 	var fish_instance = koiFish.instantiate()
 	fish_instance.global_position = pos
 	add_child(fish_instance)
+
+
+func _on_audio_stream_player_finished():
+	$AudioStreamPlayer.play(0.0)

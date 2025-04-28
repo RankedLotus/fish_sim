@@ -4,6 +4,8 @@ func _ready():
 	self.visible = true
 	rotation = randf() * 2 * PI
 	$movement.dir_vector = Vector2(cos(rotation), sin(rotation))
+	$GPUParticles2D.emitting = true;
+	$AudioStreamPlayer.play(randf() / 3 + 0.4);
 
 func _physics_process(delta):
 	global_position += $movement.get_position_difference() * delta

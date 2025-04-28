@@ -1,8 +1,29 @@
-[gd_scene load_steps=4 format=3 uid="uid://d3ymaghq6gyyb"]
+[gd_scene load_steps=8 format=3 uid="uid://d3ymaghq6gyyb"]
 
 [ext_resource type="Texture2D" uid="uid://ck70fofxmofu7" path="res://koifishy.png" id="1_hk11d"]
 [ext_resource type="Script" path="res://basic_bird.gd" id="1_rqbdg"]
 [ext_resource type="Script" path="res://movement.gd" id="2_povt0"]
+[ext_resource type="AudioStream" uid="uid://ohenvpn0rtrp" path="res://water-splash-199583.mp3" id="4_w8475"]
+
+[sub_resource type="Curve" id="Curve_ib66m"]
+max_value = 20.0
+bake_resolution = 200
+_data = [Vector2(0, 20), 0.0, 0.0, 0, 0, Vector2(0.19837, 5.90526), -27.9766, -27.9766, 0, 0, Vector2(0.997283, 0.27), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_fj0y3"]
+curve = SubResource("Curve_ib66m")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_x6n5f"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 20.0
+initial_velocity_max = 80.0
+gravity = Vector3(0, 150, 0)
+scale_min = 20.0
+scale_max = 30.0
+scale_over_velocity_curve = SubResource("CurveTexture_fj0y3")
+color = Color(0.898039, 1, 1, 0.72549)
 
 [node name="basicFish" type="Node2D"]
 light_mask = 2
@@ -17,3 +38,18 @@ texture = ExtResource("1_hk11d")
 
 [node name="movement" type="Node2D" parent="."]
 script = ExtResource("2_povt0")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(-0.333336, -0.333333)
+emitting = false
+amount = 30
+process_material = SubResource("ParticleProcessMaterial_x6n5f")
+lifetime = 0.6
+one_shot = true
+explosiveness = 0.6
+randomness = 0.45
+trail_enabled = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_w8475")
+volume_db = -5.0
