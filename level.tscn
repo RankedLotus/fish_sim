@@ -20,7 +20,10 @@ shader = ExtResource("2_inum6")
 shader_parameter/scroll = Vector2(0.1, 0.1)
 shader_parameter/scroll2 = Vector2(0.08, 0.08)
 shader_parameter/distortion_strength = 0.00800005
-shader_parameter/tone_color = Color(0.034412, 0.200432, 0.325462, 0.690196)
+shader_parameter/tone_color = Color(0.133664, 0.277164, 0.41055, 0.635294)
+shader_parameter/top_color = Color(0, 0.917299, 0.926587, 0.666667)
+shader_parameter/light_start = 0.275
+shader_parameter/light_end = 0.4
 shader_parameter/noise = SubResource("NoiseTexture2D_qw0u6")
 shader_parameter/noise2 = SubResource("NoiseTexture2D_3h4be")
 

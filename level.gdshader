@@ -2,23 +2,37 @@ shader_type canvas_item;
 
 uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
 uniform sampler2D noise : repeat_enable;
-uniform vec2 scroll = vec2(0.05, 0.05);
+uniform vec2 scroll = vec2(0.002, 0.002);
 uniform sampler2D noise2 : repeat_enable;
-uniform vec2 scroll2 = vec2(0.05, 0.05);
-uniform float distortion_strength : hint_range(-1, 1) = 0.006;
+uniform vec2 scroll2 = vec2(0.003, 0.003);
+uniform float distortion_strength : hint_range(-1, 1) = 0.0006;
 uniform vec4 tone_color : source_color;
+uniform vec4 top_color : source_color;
+uniform float light_start : hint_range(0.0, 1.0) = 0.275;
+uniform float light_end : hint_range(0.0, 1.0) = 0.4;
 
 void vertex() {
 	// Called for every vertex the material is visible on.
 }
 
 void fragment() {
-	float depth = texture(noise, UV + scroll * TIME).r * 
-	texture(noise2, UV + scroll2 * TIME).r;
-	vec4 noise_col = texture(noise, UV + scroll * TIME);
+	float depth = texture(noise, UV + scroll * TIME * 0.2).r * 
+	texture(noise2, UV + scroll2 * TIME * 0.2).r;
+	vec4 noise_col = texture(noise, UV + scroll * TIME * 0.2);
 	vec4 screen_col = texture(SCREEN_TEXTURE, 
 	 SCREEN_UV + distortion_strength * noise_col.r, -1);
-	COLOR = screen_col * 0.8 + 0.5 * tone_color; // screen_col * tone_color;
+	vec4 top_light = smoothstep(0.2, 0.25, depth) * tone_color;
+	if (depth > 0.2 && depth < 0.6) {
+		COLOR = screen_col * 0.8 + 0.5 * tone_color + top_light * depth * 0.2;
+	} else {
+		COLOR = screen_col * 0.8 + 0.5 * tone_color + top_light * 0.8 * 0.2;
+	}
+	 //+ smoothstep(0.2, 0.4, depth) * tone_color * 0.5; // screen_col * tone_color;
+	//COLOR = screen_col * tone_color + smoothstep(0.2, 0.3, depth) * tone_color;// + top_light;
+	//COLOR.a = 1.0;
+	
+	//COLOR = screen_col * tone_color * 4.0 + top_light * 20.0;
+	//COLOR.a = 1.0;
 	
 }
 
