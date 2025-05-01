@@ -1,0 +1,52 @@
+[gd_scene load_steps=10 format=3 uid="uid://cebonqygwpakc"]
+
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_ganfl"]
+[ext_resource type="Shader" path="res://level.gdshader" id="2_lx0uc"]
+[ext_resource type="Texture2D" uid="uid://48ahf4pgdw5y" path="res://art/icon.svg" id="3_r70a0"]
+[ext_resource type="PackedScene" uid="uid://d3ymaghq6gyyb" path="res://scenes/koi_fish.tscn" id="4_icc3s"]
+[ext_resource type="AudioStream" uid="uid://cjr62psid121" path="res://art/lake-wavelet-27909.mp3" id="5_6fyur"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_d1lfi"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qw0u6"]
+seamless = true
+noise = SubResource("FastNoiseLite_d1lfi")
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_3h4be"]
+invert = true
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nus4m"]
+shader = ExtResource("2_lx0uc")
+shader_parameter/scroll = Vector2(0.1, 0.1)
+shader_parameter/scroll2 = Vector2(0.08, 0.08)
+shader_parameter/distortion_strength = 0.00800005
+shader_parameter/tone_color = Color(0.133664, 0.277164, 0.41055, 0.635294)
+shader_parameter/top_color = Color(0, 0.917299, 0.926587, 0.666667)
+shader_parameter/light_start = 0.275
+shader_parameter/light_end = 0.4
+shader_parameter/noise = SubResource("NoiseTexture2D_qw0u6")
+shader_parameter/noise2 = SubResource("NoiseTexture2D_3h4be")
+
+[node name="level" type="Node2D"]
+script = ExtResource("1_ganfl")
+
+[node name="shader" type="Sprite2D" parent="."]
+top_level = true
+material = SubResource("ShaderMaterial_nus4m")
+scale = Vector2(23.0915, 24.6061)
+texture = ExtResource("3_r70a0")
+
+[node name="basicFish" parent="." instance=ExtResource("4_icc3s")]
+texture_filter = 3
+position = Vector2(0, 0)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+texture_filter = 1
+zoom = Vector2(0.85, 0.85)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_6fyur")
+autoplay = true
+
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]

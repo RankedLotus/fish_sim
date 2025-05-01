@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ck70fofxmofu7"
-path="res://.godot/imported/koifishy.png-723f680a376b8b90a7d70690dc2f8cd5.ctex"
+uid="uid://cm4ukxsk02rjj"
+path="res://.godot/imported/koifishy_palooza.png-a817bab4478fd28ec416be198030deea.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://koifishy.png"
-dest_files=["res://.godot/imported/koifishy.png-723f680a376b8b90a7d70690dc2f8cd5.ctex"]
+source_file="res://art/koifishy_palooza.png"
+dest_files=["res://.godot/imported/koifishy_palooza.png-a817bab4478fd28ec416be198030deea.ctex"]
 
 [params]
 

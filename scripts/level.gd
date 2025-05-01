@@ -1,6 +1,6 @@
 extends Node2D
 
-const koiFish = preload("res://basic_bird.tscn")
+const koiFish = preload("res://scenes/koi_fish.tscn")
 
 func _physics_process(delta):
 	if Input.is_action_just_pressed("click"):

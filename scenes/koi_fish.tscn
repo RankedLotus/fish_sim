@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://d3ymaghq6gyyb"]
 
-[ext_resource type="Texture2D" uid="uid://ck70fofxmofu7" path="res://koifishy.png" id="1_hk11d"]
-[ext_resource type="Script" path="res://basic_bird.gd" id="1_rqbdg"]
-[ext_resource type="Script" path="res://movement.gd" id="2_povt0"]
-[ext_resource type="AudioStream" uid="uid://ohenvpn0rtrp" path="res://water-splash-199583.mp3" id="4_w8475"]
+[ext_resource type="Script" path="res://scripts/basic_bird.gd" id="1_ig2ws"]
+[ext_resource type="Texture2D" uid="uid://cm4ukxsk02rjj" path="res://art/koifishy_palooza.png" id="2_v4dvx"]
+[ext_resource type="Script" path="res://scripts/movement.gd" id="3_2tnl4"]
+[ext_resource type="AudioStream" uid="uid://ohenvpn0rtrp" path="res://art/water-splash-199583.mp3" id="4_pgp1q"]
 
 [sub_resource type="Curve" id="Curve_ib66m"]
 max_value = 20.0
@@ -25,20 +25,22 @@ scale_max = 30.0
 scale_over_velocity_curve = SubResource("CurveTexture_fj0y3")
 color = Color(0.898039, 1, 1, 0.72549)
 
-[node name="basicFish" type="Node2D"]
+[node name="koi_fish" type="Node2D"]
 top_level = true
 light_mask = 2
 visibility_layer = 2
 position = Vector2(477, 220)
 scale = Vector2(4.2, 4.2)
-script = ExtResource("1_rqbdg")
+script = ExtResource("1_ig2ws")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("1_hk11d")
+texture = ExtResource("2_v4dvx")
+hframes = 2
+vframes = 2
 
 [node name="movement" type="Node2D" parent="."]
-script = ExtResource("2_povt0")
+script = ExtResource("3_2tnl4")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 position = Vector2(-0.333336, -0.333333)
@@ -54,7 +56,7 @@ trail_sections = 4
 trail_section_subdivisions = 2
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_w8475")
+stream = ExtResource("4_pgp1q")
 volume_db = -5.0
 
 [node name="Area2D" type="Area2D" parent="."]

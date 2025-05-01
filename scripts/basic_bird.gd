@@ -4,6 +4,14 @@ var has_submerged = false
 var has_flipped = false
 
 func _ready():
+	var which_sprite = randi_range(0, 20)
+	if which_sprite < 10:
+		$Sprite2D.frame = 0
+	elif which_sprite < 17:
+		$Sprite2D.frame = 1
+	else:
+		$Sprite2D.frame = 2
+	
 	self.visible = true
 	rotation = randf() * 2 * PI
 	$movement.dir_vector = Vector2(cos(rotation), sin(rotation))
@@ -28,7 +36,7 @@ func _on_area_2d_area_entered(area):
 		#$movement.speed += 90
 		#$movement.should_be_flipping = true
 		#$movement.flip_target = $movement.dir_vector * -1
-		$movement.dir_vector *= -1
+		$movement.target_rotation += PI/3
 		has_flipped = true
 		$sprint_timer.start()
 		
