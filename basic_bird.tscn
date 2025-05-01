@@ -30,7 +30,7 @@ top_level = true
 light_mask = 2
 visibility_layer = 2
 position = Vector2(477, 220)
-scale = Vector2(3.3, 3.3)
+scale = Vector2(4.2, 4.2)
 script = ExtResource("1_rqbdg")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -56,3 +56,15 @@ trail_section_subdivisions = 2
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_w8475")
 volume_db = -5.0
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+position = Vector2(0, -0.238095)
+polygon = PackedVector2Array(-5.95238, -13.3333, -1.66666, -19.7619, 2.85715, -19.7619, 6.42857, -13.3333, 6.66667, -10.4762, 12.381, -3.80952, 11.6667, 0, 7.85715, -2.61905, 5.71429, -1.66667, 2.85715, 9.04762, 11.4286, 20, 6.90476, 20.2381, 1.42857, 15.7143, -5.2381, 20.2381, -10.9524, 20.4762, -2.38095, 10.9524, -5, -2.14286, -6.90476, -2.85714, -10.2381, 0.476189, -11.1905, -3.57143, -5.71429, -10)
+
+[node name="sprint_timer" type="Timer" parent="."]
+wait_time = 0.55
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="sprint_timer" to="." method="_on_sprint_timer_timeout"]
