@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://br5tb1b2ybjei"]
+
+[ext_resource type="StyleBox" uid="uid://ccdhtb58krhh0" path="res://normal_button.tres" id="1_gxt5q"]
+
+[resource]
+default_font_size = 50
+Button/styles/normal = ExtResource("1_gxt5q")

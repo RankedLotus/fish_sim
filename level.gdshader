@@ -5,7 +5,8 @@ uniform sampler2D noise : repeat_enable;
 uniform vec2 scroll = vec2(0.002, 0.002);
 uniform sampler2D noise2 : repeat_enable;
 uniform vec2 scroll2 = vec2(0.003, 0.003);
-uniform float distortion_strength : hint_range(-4, 4) = 4;
+uniform float distortion_strength = 1.0;
+uniform vec2 my_unique_strength = vec2(10.0, 10.0);
 uniform vec4 tone_color : source_color;
 uniform vec4 top_color : source_color;
 uniform float light_start : hint_range(0.0, 1.0) = 0.275;
@@ -15,12 +16,15 @@ void vertex() {
 	// Called for every vertex the material is visible on.
 }
 
+uniform float s2 = 2.0;
+
 void fragment() {
 	float depth = texture(noise, UV + scroll * TIME * 0.2).r * 
 	texture(noise2, UV + scroll2 * TIME * 0.2).r;
 	vec4 noise_col = texture(noise, UV + scroll * TIME * 0.2);
+	vec2 my_strength = distortion_strength * 3.5 * noise_col.rg;
 	vec4 screen_col = texture(SCREEN_TEXTURE, 
-	 SCREEN_UV + distortion_strength * noise_col.r, -1);
+	 SCREEN_UV + s2 * distortion_strength * noise_col.r, -1);
 	vec4 top_light = smoothstep(0.2, 0.25, depth) * tone_color;
 	if (depth > 0.2 && depth < 0.6) {
 		COLOR = screen_col * 0.8 + 0.5 * tone_color + top_light * depth * 0.2;

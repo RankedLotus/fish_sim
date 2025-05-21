@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://cebonqygwpakc"]
+[gd_scene load_steps=11 format=3 uid="uid://cebonqygwpakc"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_ganfl"]
 [ext_resource type="Shader" path="res://level.gdshader" id="2_lx0uc"]
 [ext_resource type="Texture2D" uid="uid://48ahf4pgdw5y" path="res://art/icon.svg" id="3_r70a0"]
 [ext_resource type="PackedScene" uid="uid://d3ymaghq6gyyb" path="res://scenes/koi_fish.tscn" id="4_icc3s"]
 [ext_resource type="AudioStream" uid="uid://cjr62psid121" path="res://art/lake-wavelet-27909.mp3" id="5_6fyur"]
+[ext_resource type="PackedScene" uid="uid://c7mdfmap7klbc" path="res://menu.tscn" id="6_oxkog"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_d1lfi"]
 
@@ -21,10 +22,12 @@ shader = ExtResource("2_lx0uc")
 shader_parameter/scroll = Vector2(0.1, 0.1)
 shader_parameter/scroll2 = Vector2(0.08, 0.08)
 shader_parameter/distortion_strength = 0.00800005
+shader_parameter/my_unique_strength = Vector2(10, 10)
 shader_parameter/tone_color = Color(0.133664, 0.277164, 0.41055, 0.635294)
 shader_parameter/top_color = Color(0, 0.917299, 0.926587, 0.666667)
 shader_parameter/light_start = 0.275
 shader_parameter/light_end = 0.4
+shader_parameter/s2 = 20.0
 shader_parameter/noise = SubResource("NoiseTexture2D_qw0u6")
 shader_parameter/noise2 = SubResource("NoiseTexture2D_3h4be")
 
@@ -48,5 +51,9 @@ zoom = Vector2(0.85, 0.85)
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_6fyur")
 autoplay = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Menu" parent="CanvasLayer" instance=ExtResource("6_oxkog")]
 
 [connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
