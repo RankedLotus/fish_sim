@@ -12,6 +12,9 @@ func _ready():
 	menu.scale = Vector2(0.0, 0.0)
 
 func _physics_process(delta):
+	menu.pivot_offset = get_viewport().get_visible_rect().size * 0.5
+	
+	
 	$shader.material.set("shader_parameter/s2", shader_water_strength)
 	print($shader.material.get("shader_parameter/s2"))
 	
@@ -20,7 +23,7 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("escape"):
 		if menu.scale.x < 0.1:
 			$AnimationPlayer.play("zoom_in")
-		if menu.scale == Vector2(1.0, 1.0):
+		else:
 			$AnimationPlayer.play("zoom_out")
 		#menu.visible = not menu.is_visible_in_tree()
 		can_click = not can_click

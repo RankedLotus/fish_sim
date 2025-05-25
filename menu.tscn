@@ -7,19 +7,28 @@
 
 [node name="Menu" type="Control"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_left = 0.00998264
+anchor_top = 0.00990738
+anchor_right = 0.989983
+anchor_bottom = 0.989907
+offset_left = -11.5
+offset_top = -6.41998
+offset_right = 11.54
+offset_bottom = 6.53998
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.98, 0.98)
 pivot_offset = Vector2(575, 321)
+size_flags_vertical = 4
 script = ExtResource("1_sbatl")
+metadata/_edit_use_anchors_ = true
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 11.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_qokof")
@@ -37,12 +46,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -184.0
-offset_top = -89.0
-offset_right = 184.0
-offset_bottom = 89.0
+offset_left = -278.0
+offset_top = -188.0
+offset_right = 90.0
+offset_bottom = 22.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(1.56, 1.72)
 theme_override_constants/separation = 20
 
 [node name="audio" type="Button" parent="NinePatchRect/VBoxContainer"]
