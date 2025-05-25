@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cebonqygwpakc"]
+[gd_scene load_steps=14 format=3 uid="uid://cebonqygwpakc"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_ganfl"]
 [ext_resource type="Shader" path="res://level.gdshader" id="2_lx0uc"]
@@ -31,6 +31,44 @@ shader_parameter/s2 = 20.0
 shader_parameter/noise = SubResource("NoiseTexture2D_qw0u6")
 shader_parameter/noise2 = SubResource("NoiseTexture2D_3h4be")
 
+[sub_resource type="Animation" id="Animation_wuhtt"]
+resource_name = "zoom_in"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Menu:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1.7411, 0.466516, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0.4, 0.4), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_pxg1g"]
+resource_name = "zoom_out"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Menu:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 0.378929, 2.63902),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.4, 0.4), Vector2(1e-05, 1e-05)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_iujt8"]
+_data = {
+"zoom_in": SubResource("Animation_wuhtt"),
+"zoom_out": SubResource("Animation_pxg1g")
+}
+
 [node name="level" type="Node2D"]
 script = ExtResource("1_ganfl")
 
@@ -55,5 +93,11 @@ autoplay = true
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Menu" parent="CanvasLayer" instance=ExtResource("6_oxkog")]
+scale = Vector2(1e-05, 1e-05)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_iujt8")
+}
 
 [connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
