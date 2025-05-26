@@ -1,7 +1,9 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://br5tb1b2ybjei"]
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://br5tb1b2ybjei"]
 
 [ext_resource type="StyleBox" uid="uid://ccdhtb58krhh0" path="res://normal_button.tres" id="1_gxt5q"]
+[ext_resource type="StyleBox" uid="uid://ddkp55l0bd8hp" path="res://button_hover.tres" id="1_wjo5g"]
 
 [resource]
 default_font_size = 50
+Button/styles/hover = ExtResource("1_wjo5g")
 Button/styles/normal = ExtResource("1_gxt5q")

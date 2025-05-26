@@ -8,11 +8,27 @@ var shader_water_strength : float = 1.0
 var menu_target_size : float = 0.2
 var menu_size : float = 1.0
 @onready var menu = $CanvasLayer/Menu
+@export var global_speed = 30
+
 func _ready():
-	menu.scale = Vector2(0.0, 0.0)
+	#$shader.size = DisplayServer.window_get_size()
+	menu.scale = Vector2(0, 0)
+	pass
+	menu.pivot_offset = DisplayServer.window_get_size() / 2
+	#menu.anchor_left = 0.5
+	#menu.anchor_top = 0.5
+	#menu.anchor_right = 0.5
+	#menu.anchor_bottom = 0.5
+	#menu.position = Vector2(0, 0)
+	#menu.scale = Vector2(0.0, 0.0)
+func _update_speeds(multiplier):
+	for fish in get_tree().get_nodes_in_group("fishies"):
+		fish.mult_speed(multiplier)
+	global_speed = multiplier
+	
 
 func _physics_process(delta):
-	menu.pivot_offset = get_viewport().get_visible_rect().size * 0.5
+	#menu.pivot_offset = get_viewport().get_visible_rect().size * 0.5
 	
 	
 	$shader.material.set("shader_parameter/s2", shader_water_strength)
@@ -38,6 +54,7 @@ func _make_fish(pos):
 	var fish_instance = koiFish.instantiate()
 	fish_instance.global_position = pos
 	add_child(fish_instance)
+	fish_instance.mult_speed(global_speed)
 
 
 func _on_audio_stream_player_finished():

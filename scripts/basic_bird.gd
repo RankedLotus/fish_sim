@@ -3,7 +3,16 @@ extends Node2D
 var has_submerged = false
 var has_flipped = false
 
+
+func mult_speed(mult):
+	$movement.base_speed = mult
+	$movement.speed = mult
+	$movement.target_speed = mult
+
+
 func _ready():
+	self.add_to_group("fishies")
+	
 	var which_sprite = randi_range(0, 20)
 	if which_sprite < 10:
 		$Sprite2D.frame = 0

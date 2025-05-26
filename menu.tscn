@@ -7,28 +7,22 @@
 
 [node name="Menu" type="Control"]
 layout_mode = 3
-anchor_left = 0.00998264
-anchor_top = 0.00990738
-anchor_right = 0.989983
-anchor_bottom = 0.989907
-offset_left = -11.5
-offset_top = -6.41998
-offset_right = 11.54
-offset_bottom = 6.53998
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.98, 0.98)
-pivot_offset = Vector2(575, 321)
-size_flags_vertical = 4
+pivot_offset = Vector2(-1.15024, -1.08561)
+size_flags_horizontal = 4
+size_flags_vertical = 6
 script = ExtResource("1_sbatl")
-metadata/_edit_use_anchors_ = true
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 11.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_qokof")
@@ -38,22 +32,21 @@ patch_margin_right = 154
 patch_margin_bottom = 113
 axis_stretch_horizontal = 2
 axis_stretch_vertical = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -278.0
-offset_top = -188.0
-offset_right = 90.0
-offset_bottom = 22.0
+anchors_preset = -1
+anchor_left = 0.340278
+anchor_top = 0.337963
+anchor_right = 0.659722
+anchor_bottom = 0.695417
+offset_bottom = -21.63
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(1.56, 1.72)
+scale = Vector2(1, 1.103)
 theme_override_constants/separation = 20
+metadata/_edit_use_anchors_ = true
 
 [node name="audio" type="Button" parent="NinePatchRect/VBoxContainer"]
 layout_mode = 2
@@ -83,5 +76,24 @@ offset_bottom = 36.0
 theme_override_font_sizes/font_size = 11
 text = "Wave Strength"
 
+[node name="HSlider2" type="HSlider" parent="NinePatchRect/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("4_85qbd")
+max_value = 400.0
+step = 0.5
+value = 30.0
+
+[node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/HSlider2"]
+layout_mode = 0
+offset_left = -81.0
+offset_top = -1.0
+offset_right = 4.0
+offset_bottom = 36.0
+theme_override_font_sizes/font_size = 11
+text = "Fish speed"
+
+[connection signal="pressed" from="NinePatchRect/VBoxContainer/audio" to="." method="_on_audio_pressed"]
 [connection signal="pressed" from="NinePatchRect/VBoxContainer/quit" to="." method="_on_quit_pressed"]
 [connection signal="value_changed" from="NinePatchRect/VBoxContainer/HSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="value_changed" from="NinePatchRect/VBoxContainer/HSlider2" to="." method="_on_h_slider_2_value_changed"]
