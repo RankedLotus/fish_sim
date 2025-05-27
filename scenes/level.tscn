@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cebonqygwpakc"]
+[gd_scene load_steps=15 format=3 uid="uid://cebonqygwpakc"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_ganfl"]
 [ext_resource type="Shader" path="res://level.gdshader" id="2_lx0uc"]
@@ -65,8 +65,25 @@ tracks/0/keys = {
 "values": [Vector2(1, 1), Vector2(0.4, 0.4), Vector2(1e-05, 1e-05)]
 }
 
+[sub_resource type="Animation" id="Animation_hpclp"]
+resource_name = "init_tooltip_fade"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Label:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(3, 6),
+"transitions": PackedFloat32Array(0.574349, 1.7411),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_iujt8"]
 _data = {
+"init_tooltip_fade": SubResource("Animation_hpclp"),
 "zoom_in": SubResource("Animation_wuhtt"),
 "zoom_out": SubResource("Animation_pxg1g")
 }
@@ -94,8 +111,21 @@ autoplay = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -87.0
+offset_right = 333.0
+grow_vertical = 0
+scale = Vector2(0.493636, 0.493636)
+theme_override_font_sizes/font_size = 30
+text = "'ESC' to view menu,
+Left Click to spawn fish
+Right Click to make a splash"
+
 [node name="Menu" parent="CanvasLayer" instance=ExtResource("6_oxkog")]
-scale = Vector2(1, 1)
+scale = Vector2(1e-05, 1e-05)
 metadata/_edit_use_anchors_ = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

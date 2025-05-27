@@ -2,7 +2,17 @@ extends Node2D
 
 var has_submerged = false
 var has_flipped = false
+@onready var rclick_dir : Vector2 = $movement.dir_vector
+var moving_toward_rclick : bool = false
 
+func _change_target(newpos):
+	var new_vec = (newpos - global_position).normalized() * 2
+	var amt_to_rotate = $movement.dir_vector.angle_to(new_vec)
+	rclick_dir = new_vec
+	moving_toward_rclick = true
+	#$movement.target_rotation += amt_to_rotate
+	#$movement.target_speed *= 3
+	
 
 func mult_speed(mult):
 	$movement.base_speed = mult
@@ -28,6 +38,14 @@ func _ready():
 	$AudioStreamPlayer.play(randf() / 3 + 0.2);
 
 func _physics_process(delta):
+	
+	if moving_toward_rclick:
+		$movement.dir_vector = $movement.dir_vector.move_toward(rclick_dir, delta)
+		
+		if $movement.dir_vector == rclick_dir:
+			moving_toward_rclick = false
+	
+	
 	scale.x = move_toward(scale.x, 3, delta * 4)
 	scale.y = move_toward(scale.y, 3, delta * 4)
 	
