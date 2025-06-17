@@ -11,7 +11,7 @@ func _change_target(newpos):
 	rclick_dir = new_vec
 	moving_toward_rclick = true
 	#$movement.target_rotation += amt_to_rotate
-	#$movement.target_speed *= 3
+	#$movement.target_speed *= 1.8
 	
 
 func mult_speed(mult):

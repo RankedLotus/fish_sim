@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cebonqygwpakc"]
+[gd_scene load_steps=18 format=3 uid="uid://cebonqygwpakc"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_ganfl"]
 [ext_resource type="Shader" path="res://level.gdshader" id="2_lx0uc"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://d3ymaghq6gyyb" path="res://scenes/koi_fish.tscn" id="4_icc3s"]
 [ext_resource type="AudioStream" uid="uid://cjr62psid121" path="res://art/lake-wavelet-27909.mp3" id="5_6fyur"]
 [ext_resource type="PackedScene" uid="uid://c7mdfmap7klbc" path="res://menu.tscn" id="6_oxkog"]
+[ext_resource type="Shader" path="res://scenes/shockwave.gdshader" id="7_m3ubg"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_d1lfi"]
 
@@ -32,6 +33,28 @@ shader_parameter/light_end = 0.4
 shader_parameter/s2 = 20.0
 shader_parameter/noise = SubResource("NoiseTexture2D_qw0u6")
 shader_parameter/noise2 = SubResource("NoiseTexture2D_3h4be")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n53wu"]
+shader = ExtResource("7_m3ubg")
+shader_parameter/center = Vector2(0.5, 0.5)
+shader_parameter/force = 0.04
+shader_parameter/size = 0.0
+
+[sub_resource type="Animation" id="Animation_hpclp"]
+resource_name = "init_tooltip_fade"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Label:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(3, 6),
+"transitions": PackedFloat32Array(0.574349, 1.7411),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_wuhtt"]
 resource_name = "zoom_in"
@@ -65,25 +88,13 @@ tracks/0/keys = {
 "values": [Vector2(1, 1), Vector2(0.4, 0.4), Vector2(1e-05, 1e-05)]
 }
 
-[sub_resource type="Animation" id="Animation_hpclp"]
-resource_name = "init_tooltip_fade"
-length = 6.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasLayer/Label:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(3, 6),
-"transitions": PackedFloat32Array(0.574349, 1.7411),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(0, 0)]
-}
+[sub_resource type="Animation" id="Animation_7jtlb"]
+resource_name = "shockwave"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_iujt8"]
 _data = {
 "init_tooltip_fade": SubResource("Animation_hpclp"),
+"shockwave": SubResource("Animation_7jtlb"),
 "zoom_in": SubResource("Animation_wuhtt"),
 "zoom_out": SubResource("Animation_pxg1g")
 }
@@ -103,7 +114,6 @@ position = Vector2(0, 0)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 texture_filter = 1
-zoom = Vector2(0.85, 0.85)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_6fyur")
@@ -118,7 +128,6 @@ anchor_bottom = 1.0
 offset_top = -87.0
 offset_right = 333.0
 grow_vertical = 0
-scale = Vector2(0.493636, 0.493636)
 theme_override_font_sizes/font_size = 30
 text = "'ESC' to view menu,
 Left Click to spawn fish
@@ -128,9 +137,18 @@ Right Click to make a splash"
 scale = Vector2(1e-05, 1e-05)
 metadata/_edit_use_anchors_ = true
 
+[node name="ripple_shader" type="Sprite2D" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_n53wu")
+position = Vector2(-11.5, -6.5)
+scale = Vector2(43.1797, 46.2891)
+texture = ExtResource("3_r70a0")
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_iujt8")
 }
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_r70a0")
 
 [connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
