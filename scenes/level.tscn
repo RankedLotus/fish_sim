@@ -1,12 +1,37 @@
-[gd_scene load_steps=18 format=3 uid="uid://cebonqygwpakc"]
+[gd_scene load_steps=28 format=3 uid="uid://cebonqygwpakc"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_ganfl"]
 [ext_resource type="Shader" path="res://level.gdshader" id="2_lx0uc"]
+[ext_resource type="Texture2D" uid="uid://c540ruic2le85" path="res://art/pexels-kindelmedia-8849625.jpg" id="3_0212b"]
 [ext_resource type="Texture2D" uid="uid://48ahf4pgdw5y" path="res://art/icon.svg" id="3_r70a0"]
+[ext_resource type="Texture2D" uid="uid://ce6dtun0su5nv" path="res://art/pexels-cottonbro-4821030.jpg" id="4_31u2t"]
 [ext_resource type="PackedScene" uid="uid://d3ymaghq6gyyb" path="res://scenes/koi_fish.tscn" id="4_icc3s"]
 [ext_resource type="AudioStream" uid="uid://cjr62psid121" path="res://art/lake-wavelet-27909.mp3" id="5_6fyur"]
+[ext_resource type="Texture2D" uid="uid://cbuagyw0vvn3h" path="res://art/pexels-th-ng-hy-390169813-14772087.jpg" id="5_s01jc"]
 [ext_resource type="PackedScene" uid="uid://c7mdfmap7klbc" path="res://menu.tscn" id="6_oxkog"]
 [ext_resource type="Shader" path="res://scenes/shockwave.gdshader" id="7_m3ubg"]
+[ext_resource type="Shader" path="res://scenes/test_shader.gdshader" id="7_okdvk"]
+[ext_resource type="Texture2D" uid="uid://cnma27tsq1mrj" path="res://art/pexels-may-barros-15454-1260840.jpg" id="9_qa52v"]
+
+[sub_resource type="Curve" id="Curve_a0xqu"]
+max_value = 20.0
+bake_resolution = 200
+_data = [Vector2(0, 20), 0.0, 0.0, 0, 0, Vector2(0.19837, 5.90526), -27.9766, -27.9766, 0, 0, Vector2(0.997283, 0.27), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_fj0y3"]
+curve = SubResource("Curve_a0xqu")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_20n00"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 20.0
+initial_velocity_max = 80.0
+gravity = Vector3(0, 150, 0)
+scale_min = 20.0
+scale_max = 30.0
+scale_over_velocity_curve = SubResource("CurveTexture_fj0y3")
+color = Color(0.898039, 1, 1, 0.72549)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_d1lfi"]
 
@@ -26,18 +51,30 @@ shader_parameter/scroll = Vector2(0.1, 0.1)
 shader_parameter/scroll2 = Vector2(0.08, 0.08)
 shader_parameter/distortion_strength = 0.00800005
 shader_parameter/my_unique_strength = Vector2(10, 10)
-shader_parameter/tone_color = Color(0.133664, 0.277164, 0.41055, 0.635294)
-shader_parameter/top_color = Color(0, 0.917299, 0.926587, 0.666667)
+shader_parameter/tone_color = Color(0.133333, 0.278431, 0.411765, 0.94902)
+shader_parameter/top_color = Color(0, 0.917647, 0.92549, 0.823529)
 shader_parameter/light_start = 0.275
 shader_parameter/light_end = 0.4
 shader_parameter/s2 = 20.0
 shader_parameter/noise = SubResource("NoiseTexture2D_qw0u6")
 shader_parameter/noise2 = SubResource("NoiseTexture2D_3h4be")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8s705"]
+shader = ExtResource("7_m3ubg")
+shader_parameter/center = null
+shader_parameter/force = null
+shader_parameter/size = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ct8hg"]
+shader = ExtResource("7_okdvk")
+shader_parameter/center = Vector2(0.5, 0.5)
+shader_parameter/force = 0.2
+shader_parameter/size = null
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n53wu"]
 shader = ExtResource("7_m3ubg")
 shader_parameter/center = Vector2(0.5, 0.5)
-shader_parameter/force = 0.04
+shader_parameter/force = 0.05
 shader_parameter/size = 0.0
 
 [sub_resource type="Animation" id="Animation_hpclp"]
@@ -102,24 +139,79 @@ _data = {
 [node name="level" type="Node2D"]
 script = ExtResource("1_ganfl")
 
+[node name="floor1" type="Sprite2D" parent="."]
+modulate = Color(0.909804, 1, 1, 0.247059)
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(-1, -2)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("9_qa52v")
+
+[node name="floor2" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(0.909804, 1, 1, 0.247059)
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(-1, -2)
+rotation = -1.5708
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("3_0212b")
+
+[node name="floor3" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(0.909804, 1, 1, 0.376471)
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(-1, -2)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("4_31u2t")
+
+[node name="floor4" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(0.30258, 0.9878, 1, 0.376471)
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(-1, -2)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("5_s01jc")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(-0.333336, -0.333333)
+scale = Vector2(1e-05, 1e-05)
+emitting = false
+amount = 40
+process_material = SubResource("ParticleProcessMaterial_20n00")
+lifetime = 0.6
+one_shot = true
+explosiveness = 0.6
+randomness = 0.45
+trail_enabled = true
+trail_sections = 6
+trail_section_subdivisions = 2
+
 [node name="shader" type="Sprite2D" parent="."]
 top_level = true
 material = SubResource("ShaderMaterial_nus4m")
-scale = Vector2(42.841, 45.651)
+scale = Vector2(46, 46)
 texture = ExtResource("3_r70a0")
 
 [node name="basicFish" parent="." instance=ExtResource("4_icc3s")]
 texture_filter = 3
-position = Vector2(2740, 0)
-
-[node name="Camera2D" type="Camera2D" parent="."]
-texture_filter = 1
+position = Vector2(2940, 0)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_6fyur")
 autoplay = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_8s705")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Label" type="Label" parent="CanvasLayer"]
 anchors_preset = 2
@@ -130,25 +222,33 @@ offset_right = 333.0
 grow_vertical = 0
 theme_override_font_sizes/font_size = 30
 text = "'ESC' to view menu,
-Left Click to spawn fish
-Right Click to make a splash"
+'Left Click' to spawn fish
+'Right Click' to make a splash
+'ALT' to change background
+"
 
 [node name="Menu" parent="CanvasLayer" instance=ExtResource("6_oxkog")]
 scale = Vector2(1e-05, 1e-05)
 metadata/_edit_use_anchors_ = true
 
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
+visible = false
+material = SubResource("ShaderMaterial_ct8hg")
+scale = Vector2(46, 46)
+texture = ExtResource("3_r70a0")
+
 [node name="ripple_shader" type="Sprite2D" parent="CanvasLayer"]
+visible = false
 material = SubResource("ShaderMaterial_n53wu")
 scale = Vector2(46, 46)
 texture = ExtResource("3_r70a0")
+
+[node name="Camera2D" type="Camera2D" parent="CanvasLayer"]
+texture_filter = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_iujt8")
 }
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-visible = false
-texture = ExtResource("3_r70a0")
 
 [connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]

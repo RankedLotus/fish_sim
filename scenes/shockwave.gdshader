@@ -12,7 +12,7 @@ void vertex() {
 void fragment() {
 	float ratio = SCREEN_PIXEL_SIZE.x / SCREEN_PIXEL_SIZE.y; // get aspect ratio
 	
-	vec2 scaledUV = (SCREEN_UV - vec2(0.5, 0) ) / vec2(ratio, 1.0) + vec2(0.5, 0); //bring the uv to the left, scale the x-axis & bring back right
+	vec2 scaledUV = (SCREEN_UV - vec2(0.5, 0) ) * vec2(1.0, ratio) + vec2(0.5, 0); //bring the uv to the left, scale the x-axis & bring back right
 	float mask = (1.0 - smoothstep(size - 0.1, size, length(scaledUV - center)))
 	* smoothstep(size - 0.2, size - 0.1, length(scaledUV - center)); // 1.0 - to invert
 	vec2 disp = normalize(SCREEN_UV - center) * force * mask; //direction from center to current coordinate

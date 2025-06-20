@@ -25,13 +25,19 @@ func _ready():
 	
 	var which_sprite = randi_range(0, 50)
 	
-	$Sprite2D.frame = which_sprite % 6
-	#if which_sprite < 10:
-	#	$Sprite2D.frame = 0
-	#elif which_sprite < 17:
-#		$Sprite2D.frame = 1
-#	else:
-#		$Sprite2D.frame = 2
+	#$Sprite2D.frame = which_sprite % 6
+	if which_sprite < 15:
+		$Sprite2D.frame = 0
+	elif which_sprite < 30:
+		$Sprite2D.frame = 1
+	elif which_sprite < 35:
+		$Sprite2D.frame = 2
+	elif which_sprite < 40:
+		$Sprite2D.frame = 3
+	elif which_sprite < 45:
+		$Sprite2D.frame = 4
+	else:
+		$Sprite2D.frame = 5
 	
 	self.visible = true
 	rotation = randf() * 2 * PI

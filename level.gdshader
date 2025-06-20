@@ -27,9 +27,9 @@ void fragment() {
 	 SCREEN_UV + s2 * distortion_strength * noise_col.r, -1);
 	vec4 top_light = smoothstep(0.2, 0.25, depth) * tone_color;
 	if (depth > 0.2 && depth < 0.6) {
-		COLOR = screen_col * 0.8 + 0.5 * tone_color + top_light * depth * 0.2;
+		COLOR = screen_col * 0.8 + 0.6 * tone_color + top_light * depth * 0.2;
 	} else {
-		COLOR = screen_col * 0.8 + 0.5 * tone_color + top_light * 0.8 * 0.2;
+		COLOR = screen_col * 0.8 + 0.6 * tone_color + top_light * 0.8 * 0.2;
 	}
 	 //+ smoothstep(0.2, 0.4, depth) * tone_color * 0.5; // screen_col * tone_color;
 	//COLOR = screen_col * tone_color + smoothstep(0.2, 0.3, depth) * tone_color;// + top_light;
