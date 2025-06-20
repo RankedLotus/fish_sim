@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://d3ymaghq6gyyb"]
 
 [ext_resource type="Script" path="res://scripts/basic_bird.gd" id="1_ig2ws"]
-[ext_resource type="Texture2D" uid="uid://cm4ukxsk02rjj" path="res://art/koifishy_palooza.png" id="2_v4dvx"]
+[ext_resource type="Texture2D" uid="uid://buvl01smqp08c" path="res://art/koifishy_palooza.png" id="2_v4dvx"]
 [ext_resource type="Script" path="res://scripts/movement.gd" id="3_2tnl4"]
 [ext_resource type="AudioStream" uid="uid://ohenvpn0rtrp" path="res://art/water-splash-199583.mp3" id="4_pgp1q"]
 
@@ -36,8 +36,8 @@ script = ExtResource("1_ig2ws")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 texture = ExtResource("2_v4dvx")
-hframes = 2
-vframes = 2
+hframes = 3
+vframes = 3
 
 [node name="movement" type="Node2D" parent="."]
 script = ExtResource("3_2tnl4")

@@ -23,13 +23,15 @@ func mult_speed(mult):
 func _ready():
 	self.add_to_group("fishies")
 	
-	var which_sprite = randi_range(0, 20)
-	if which_sprite < 10:
-		$Sprite2D.frame = 0
-	elif which_sprite < 17:
-		$Sprite2D.frame = 1
-	else:
-		$Sprite2D.frame = 2
+	var which_sprite = randi_range(0, 50)
+	
+	$Sprite2D.frame = which_sprite % 6
+	#if which_sprite < 10:
+	#	$Sprite2D.frame = 0
+	#elif which_sprite < 17:
+#		$Sprite2D.frame = 1
+#	else:
+#		$Sprite2D.frame = 2
 	
 	self.visible = true
 	rotation = randf() * 2 * PI

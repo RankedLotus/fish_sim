@@ -56,6 +56,9 @@ tracks/0/keys = {
 "values": [Vector2(1, 1), Vector2(0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_7jtlb"]
+resource_name = "shockwave"
+
 [sub_resource type="Animation" id="Animation_wuhtt"]
 resource_name = "zoom_in"
 length = 0.6
@@ -88,9 +91,6 @@ tracks/0/keys = {
 "values": [Vector2(1, 1), Vector2(0.4, 0.4), Vector2(1e-05, 1e-05)]
 }
 
-[sub_resource type="Animation" id="Animation_7jtlb"]
-resource_name = "shockwave"
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_iujt8"]
 _data = {
 "init_tooltip_fade": SubResource("Animation_hpclp"),
@@ -110,7 +110,7 @@ texture = ExtResource("3_r70a0")
 
 [node name="basicFish" parent="." instance=ExtResource("4_icc3s")]
 texture_filter = 3
-position = Vector2(0, 0)
+position = Vector2(2740, 0)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 texture_filter = 1
@@ -139,8 +139,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="ripple_shader" type="Sprite2D" parent="CanvasLayer"]
 material = SubResource("ShaderMaterial_n53wu")
-position = Vector2(-11.5, -6.5)
-scale = Vector2(43.1797, 46.2891)
+scale = Vector2(46, 46)
 texture = ExtResource("3_r70a0")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -149,6 +148,7 @@ libraries = {
 }
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 texture = ExtResource("3_r70a0")
 
 [connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
