@@ -1,17 +1,17 @@
 [gd_scene load_steps=8 format=3 uid="uid://d3ymaghq6gyyb"]
 
-[ext_resource type="Script" path="res://scripts/basic_bird.gd" id="1_ig2ws"]
-[ext_resource type="Texture2D" uid="uid://cm4ukxsk02rjj" path="res://art/koifishy_palooza.png" id="2_v4dvx"]
-[ext_resource type="Script" path="res://scripts/movement.gd" id="3_2tnl4"]
+[ext_resource type="Script" uid="uid://dd4h1vu5jbnib" path="res://scripts/basic_bird.gd" id="1_ig2ws"]
+[ext_resource type="Texture2D" uid="uid://cruhep0hp14tp" path="res://art/koifishy_palooza_12.png" id="2_377tr"]
+[ext_resource type="Script" uid="uid://b2h7834uq2o77" path="res://scripts/movement.gd" id="3_2tnl4"]
 [ext_resource type="AudioStream" uid="uid://ohenvpn0rtrp" path="res://art/water-splash-199583.mp3" id="4_pgp1q"]
 
 [sub_resource type="Curve" id="Curve_ib66m"]
-max_value = 20.0
+_limits = [0.0, 20.0, 0.0, 1.0]
 bake_resolution = 200
 _data = [Vector2(0, 20), 0.0, 0.0, 0, 0, Vector2(0.19837, 5.90526), -27.9766, -27.9766, 0, 0, Vector2(0.997283, 0.27), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_jb5hj"]
+[sub_resource type="CurveTexture" id="CurveTexture_377tr"]
 curve = SubResource("Curve_ib66m")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_x6n5f"]
@@ -22,7 +22,7 @@ initial_velocity_max = 80.0
 gravity = Vector3(0, 150, 0)
 scale_min = 20.0
 scale_max = 30.0
-scale_over_velocity_curve = SubResource("CurveTexture_jb5hj")
+scale_over_velocity_curve = SubResource("CurveTexture_377tr")
 color = Color(0.898039, 1, 1, 0.72549)
 
 [node name="koi_fish" type="Node2D"]
@@ -35,9 +35,9 @@ script = ExtResource("1_ig2ws")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("2_v4dvx")
+texture = ExtResource("2_377tr")
 hframes = 3
-vframes = 3
+vframes = 4
 
 [node name="movement" type="Node2D" parent="."]
 script = ExtResource("3_2tnl4")
@@ -46,7 +46,6 @@ script = ExtResource("3_2tnl4")
 position = Vector2(-0.333336, -0.333333)
 emitting = false
 amount = 30
-process_material = SubResource("ParticleProcessMaterial_x6n5f")
 lifetime = 0.6
 one_shot = true
 explosiveness = 0.6
@@ -54,6 +53,7 @@ randomness = 0.45
 trail_enabled = true
 trail_sections = 4
 trail_section_subdivisions = 2
+process_material = SubResource("ParticleProcessMaterial_x6n5f")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_pgp1q")

@@ -1,6 +1,6 @@
 extends Control
 
-var is_muted = false
+var is_muted : bool = false
 var curr_speed : float = 20.0
 
 func _on_quit_pressed():

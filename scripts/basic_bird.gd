@@ -23,7 +23,10 @@ func mult_speed(mult):
 func _ready():
 	self.add_to_group("fishies")
 	
-	var which_sprite = randi_range(0, 50)
+	var scale_var : float = randi_range(-15, 15)
+	$Sprite2D.scale.x += scale_var / 100.0
+	$Sprite2D.scale.y += scale_var / 100.0
+	var which_sprite = randi_range(0, 80)
 	
 	#$Sprite2D.frame = which_sprite % 6
 	if which_sprite < 15:
@@ -36,8 +39,20 @@ func _ready():
 		$Sprite2D.frame = 3
 	elif which_sprite < 45:
 		$Sprite2D.frame = 4
-	else:
+	elif which_sprite < 50:
 		$Sprite2D.frame = 5
+	elif which_sprite < 55:
+		$Sprite2D.frame = 6
+	elif which_sprite < 60:
+		$Sprite2D.frame = 7
+	elif which_sprite < 65:
+		$Sprite2D.frame = 8
+	elif which_sprite < 70:
+		$Sprite2D.frame = 9
+	elif which_sprite < 75:
+		$Sprite2D.frame = 10
+	else:
+		$Sprite2D.frame = 11
 	
 	self.visible = true
 	rotation = randf() * 2 * PI

@@ -1,6 +1,6 @@
 extends Node2D
 
-var can_click = true
+var can_click : bool = true
 
 const koiFish = preload("res://scenes/koi_fish.tscn")
 
@@ -9,10 +9,10 @@ var menu_target_size : float = 0.2
 var menu_size : float = 1.0
 var global_attract_position : Vector2 = Vector2.ZERO
 var pulse_timer : float = 10
-@onready var bkgs = [$floor1, $floor2, $floor3, $floor4]
-var which_bkg = 0
+@onready var bkgs = [$floor1, $floor2, $floor3, $floor4, $floor5]
+var which_bkg : int = 0
 @onready var menu = $CanvasLayer/Menu
-@export var global_speed = 30
+@export var global_speed : int = 30
 
 func _ready():
 	$AnimationPlayer.play("init_tooltip_fade")
@@ -71,7 +71,7 @@ func _physics_process(delta):
 		#updating distortion center:
 		#pulse_timer = 0
 		
-		#var screen_size = $CanvasLayer/Camera2D.get_window().size
+		#var screen_size : Vector2 = $CanvasLayer/Camera2D.get_window().size
 		#var new_center = get_global_mouse_position().normalized()
 		#Vector2((get_global_mouse_position().x + (screen_size.x / 2)) / screen_size.x,
 		#(get_global_mouse_position().y + (screen_size.y / 2)) / screen_size.y)#/ $Camera2D.get_window() #(get_global_mouse_position() + (get_viewport().get_visible_rect().size / 2)) / Vector2(get_viewport().get_visible_rect().size) * Vector2(0.5, 1)
@@ -81,8 +81,8 @@ func _physics_process(delta):
 		#new_center = Vector2.ZERO
 		#var new_center = (get_global_mouse_position() / 100 / 2) + Vector2(0.5, 0.5)
 		#new_center = Vector2.ZERO
-		print("Mouse pos: ")
-		print(get_global_mouse_position())
+		#print("Mouse pos: ")
+		#print(get_global_mouse_position())
 		#print(new_center)
 		#print($Camera2D.get_window().size)
 		#print(get_global_mouse_position())
@@ -91,7 +91,7 @@ func _physics_process(delta):
 		
 		#$CanvasLayer/Sprite2D.material.set_shader_parameter("center", new_center)
 		#$CanvasLayer/ColorRect.material.set_shader_parameter("center", new_center)
-		
+		#$CanvasLayer/ripple_shader.material.set_shader_parameter("center", new_center)
 	
 	if Input.is_action_just_pressed("click") and can_click:
 		_make_fish(get_global_mouse_position())
