@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://cebonqygwpakc"]
+[gd_scene load_steps=29 format=3 uid="uid://cebonqygwpakc"]
 
 [ext_resource type="Script" uid="uid://bjuu2bku7w4nq" path="res://scripts/level.gd" id="1_ganfl"]
 [ext_resource type="Shader" uid="uid://ditmeptxpfvvh" path="res://level.gdshader" id="2_lx0uc"]
@@ -67,10 +67,22 @@ tracks/0/path = NodePath("CanvasLayer/Label:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(3, 6),
+"times": PackedFloat32Array(5.73333, 5.96667),
 "transitions": PackedFloat32Array(0.574349, 1.7411),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/Label:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0666667, 5.93333),
+"transitions": PackedFloat32Array(1, 0.329877),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_7jtlb"]
@@ -108,8 +120,24 @@ tracks/0/keys = {
 "values": [Vector2(1, 1), Vector2(0.4, 0.4), Vector2(1e-05, 1e-05)]
 }
 
+[sub_resource type="Animation" id="Animation_8iemx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Label:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_iujt8"]
 _data = {
+&"RESET": SubResource("Animation_8iemx"),
 &"init_tooltip_fade": SubResource("Animation_hpclp"),
 &"shockwave": SubResource("Animation_7jtlb"),
 &"zoom_in": SubResource("Animation_wuhtt"),
@@ -140,6 +168,7 @@ color = Color(0.898039, 1, 1, 0.72549)
 script = ExtResource("1_ganfl")
 
 [node name="floor1" type="Sprite2D" parent="."]
+visible = false
 modulate = Color(0.909804, 1, 1, 0.247059)
 texture_filter = 1
 texture_repeat = 2
@@ -215,6 +244,7 @@ anchor_bottom = 1.0
 offset_top = -87.0
 offset_right = 333.0
 grow_vertical = 0
+scale = Vector2(1e-05, 1e-05)
 theme_override_font_sizes/font_size = 30
 text = "'ESC' to view menu,
 'Left Click' to spawn fish
@@ -245,6 +275,12 @@ texture_filter = 1
 libraries = {
 &"": SubResource("AnimationLibrary_iujt8")
 }
+
+[node name="tooltipAnimation" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_iujt8")
+}
+speed_scale = 0.66
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 position = Vector2(-1.2, -2.2)

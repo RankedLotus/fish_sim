@@ -1,0 +1,17 @@
+[gd_resource type="FontFile" load_steps=2 format=3 uid="uid://c2jxfnl2670e6"]
+
+[sub_resource type="GDScript" id="GDScript_sdpcn"]
+
+[resource]
+resource_name = "abagaba"
+cache/0/50/0/ascent = 0.0
+cache/0/50/0/descent = 0.0
+cache/0/50/0/underline_position = 0.0
+cache/0/50/0/underline_thickness = 0.0
+cache/0/50/0/scale = 1.0
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+script = SubResource("GDScript_sdpcn")

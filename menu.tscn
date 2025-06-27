@@ -32,16 +32,15 @@ patch_margin_right = 154
 patch_margin_bottom = 113
 axis_stretch_horizontal = 2
 axis_stretch_vertical = 2
-metadata/_edit_use_anchors_ = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.340278
-anchor_top = 0.337963
-anchor_right = 0.659722
-anchor_bottom = 0.695417
-offset_bottom = -21.63
+anchor_left = 0.199653
+anchor_top = 0.25
+anchor_right = 0.799479
+anchor_bottom = 0.675
+offset_right = -0.534973
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1, 1.103)
@@ -50,48 +49,47 @@ metadata/_edit_use_anchors_ = true
 
 [node name="audio" type="Button" parent="NinePatchRect/VBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
+size_flags_vertical = 3
 theme = ExtResource("2_dv8xh")
 text = "TOGGLE AUDIO"
 
 [node name="quit" type="Button" parent="NinePatchRect/VBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
+size_flags_vertical = 3
 theme = ExtResource("2_dv8xh")
 text = "QUIT"
 
+[node name="Label" type="Label" parent="NinePatchRect/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_outline_color = Color(0.862745, 0.627451, 0.505882, 1)
+theme_override_font_sizes/font_size = 25
+text = "Wave Strength"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="HSlider" type="HSlider" parent="NinePatchRect/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 4
+size_flags_vertical = 3
 theme = ExtResource("4_85qbd")
 max_value = 40.0
 step = 0.5
 
-[node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/HSlider"]
-layout_mode = 0
-offset_left = -81.0
-offset_top = -1.0
-offset_right = 4.0
-offset_bottom = 36.0
-theme_override_font_sizes/font_size = 11
-text = "Wave Strength"
+[node name="Label2" type="Label" parent="NinePatchRect/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 25
+text = "Fish speed"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="HSlider2" type="HSlider" parent="NinePatchRect/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 4
+size_flags_vertical = 3
 theme = ExtResource("4_85qbd")
 max_value = 400.0
 step = 0.5
 value = 30.0
-
-[node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/HSlider2"]
-layout_mode = 0
-offset_left = -81.0
-offset_top = -1.0
-offset_right = 4.0
-offset_bottom = 36.0
-theme_override_font_sizes/font_size = 11
-text = "Fish speed"
 
 [connection signal="pressed" from="NinePatchRect/VBoxContainer/audio" to="." method="_on_audio_pressed"]
 [connection signal="pressed" from="NinePatchRect/VBoxContainer/quit" to="." method="_on_quit_pressed"]

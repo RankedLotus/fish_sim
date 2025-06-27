@@ -10,22 +10,19 @@ var menu_size : float = 1.0
 var global_attract_position : Vector2 = Vector2.ZERO
 var pulse_timer : float = 10
 @onready var bkgs = [$floor1, $floor2, $floor3, $floor4, $floor5]
-var which_bkg : int = 0
+var which_bkg : int = 1
 @onready var menu = $CanvasLayer/Menu
 @export var global_speed : int = 30
 
 func _ready():
-	$AnimationPlayer.play("init_tooltip_fade")
+	which_bkg = randi_range(0, 3);
+	bkgs[which_bkg].show()
+	$tooltipAnimation.play("init_tooltip_fade")
 	#$shader.size = DisplayServer.window_get_size()
 	menu.scale = Vector2(0, 0)
 	#pass
 	menu.pivot_offset = DisplayServer.window_get_size() / 2
-	#menu.anchor_left = 0.5
-	#menu.anchor_top = 0.5
-	#menu.anchor_right = 0.5
-	#menu.anchor_bottom = 0.5
-	#menu.position = Vector2(0, 0)
-	#menu.scale = Vector2(0.0, 0.0)
+
 
 func _update_speeds(multiplier):
 	for fish in get_tree().get_nodes_in_group("fishies"):
