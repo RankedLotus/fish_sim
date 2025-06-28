@@ -50,7 +50,6 @@ lifetime = 0.6
 one_shot = true
 explosiveness = 0.6
 randomness = 0.45
-trail_enabled = true
 trail_sections = 4
 trail_section_subdivisions = 2
 process_material = SubResource("ParticleProcessMaterial_x6n5f")
